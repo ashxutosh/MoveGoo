@@ -1,5 +1,7 @@
 # Django Framework
-Django
+Django==5.2.5
 
 # PostgreSQL Database Adapter
-psycopg2-binary
+psycopg2-binary==2.9.10
+
+whitenoise==6.9.0
