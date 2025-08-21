@@ -2,7 +2,7 @@
 # This folder contains all the Python packages for your project and can be very large.
 # It should always be ignored.
 venv/
-
+.env/
 # Python cache files
 # These are generated automatically by Python and don't need to be in version control.
 *.pyc
