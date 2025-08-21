@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - MoveGoo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/service.css' %}">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{% url 'home' %}" class="nav-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                </a>
+                <ul class="nav-links" id="nav-menu">
+                    <li class="nav-link"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-link"><a href="{% url 'services' %}" class="active">Services</a></li>
+                    <li class="nav-link"><a href="{% url 'about' %}">About</a></li>
+                    <li class="nav-link"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <div class="hamburger-menu" id="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title-section">
+            <div class="container">
+                <h1>Our Services</h1>
+                <p>Tailored transport and travel solutions to meet your every need.</p>
+            </div>
+        </section>
+
+        <section class="services-page">
+            <div class="container">
+                <div class="services-page-grid">
+                    <div class="service-card-detailed">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-plane-up"></i></div>
+                            <h3>Flight Tickets</h3>
+                        </div>
+                        <p>Book flight tickets for domestic and international travel at competitive prices.</p>
+                        <a href="{% url 'flight_ticket' %}" class="btn btn-primary">Book Flights</a>
+                    </div>
+
+                    <div class="service-card-detailed">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-bus"></i></div>
+                            <h3>Bus Tickets</h3>
+                        </div>
+                        <p>Book bus tickets for intercity and interstate travel with ease and convenience.</p>
+                        <a href="{% url 'bus_ticket' %}" class="btn btn-primary">Book Bus</a>
+                    </div>
+
+                    <div class="service-card-detailed">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-train"></i></div>
+                            <h3>Train Tickets</h3>
+                        </div>
+                        <p>Explore the country by rail. Search, book, and manage your train tickets with ease.</p>
+                        <a href="{% url 'train_ticket' %}" class="btn btn-primary">Book Train</a>
+                    </div>
+                
+                    <div class="service-card-detailed">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-car"></i></div>
+                            <h3>Car Rental</h3>
+                        </div>
+                        <p>Rent a car for your personal or business needs. Choose from our wide range of vehicles.</p>
+                        <a href="{% url 'car_rental' %}" class="btn btn-primary">Rent a Car</a>
+                    </div>
+
+                    <div class="service-card-detailed">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-user-tie"></i></div>
+                            <h3>Driver Services</h3>
+                        </div>
+                        <p>Hire a professional driver for your own car or along with our rental vehicles.</p>
+                        <a href="{% url 'driver_service' %}" class="btn btn-primary">Hire a Driver</a>
+                    </div>
+                    
+                    <div class="service-card-detailed">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                            <h3>Logistics Transport</h3>
+                        </div>
+                        <p>Complete logistics solutions for your goods transportation and delivery needs.</p>
+                        <a href="{% url 'logistic' %}" class="btn btn-primary">Book Logistics</a>
+                    </div>
+                </div>
+
+                <div class="centered-card-container">
+                    <div class="service-card-detailed">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-car-on"></i></div>
+                            <h3>List Your Vehicle</h3>
+                        </div>
+                        <p>List your vehicle for rent and earn extra income. All vehicle types are welcome except for two-wheelers.</p>
+                        <a href="{% url 'vehicle_listing' %}" class="btn btn-primary">List Your Vehicle</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>
+                        <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                    </h4>
+                    <p>Your comprehensive transport and travel solutions provider. We make your journey seamless and reliable.</p>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="{% url 'home' %}">Home</a></li><li><a href="{% url 'services' %}">Services</a></li><li><a href="{% url 'about' %}">About Us</a></li><li><a href="{% url 'contact' %}">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Our Services</h4><ul><li><a href="{% url 'car_rental' %}">Car Rentals</a></li><li><a href="{% url 'driver_service' %}">Driver Services</a></li><li><a href="{% url 'logistic' %}">Logistics Transport</a></li></ul></div>
+                <div class="footer-col"><h4>Contact Us</h4><ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Shop No-17, Lingaraj Vihar Market Complex, Lingaraj Vihar, Pokhariput, Bhubaneswar, Odisha 751020</li>
+                    <li><a href="mailto:info@movegoo.com"><i class="fa-solid fa-envelope"></i> info@movegoo.com</a></li>
+                    <li class="working-hours"><i class="fa-solid fa-clock"></i> <strong>Everyday</strong><span>1st Shift: 9:30 AM - 2:00 PM</span><span>2nd Shift: 5:30 PM - 9:30 PM</span></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MoveGoo. All rights reserved.</p>
+                <div class="footer-links"><a href="{% url 'privacy_policy' %}">Privacy Policy</a><a href="{% url 'terms_of_services' %}">Terms of Service</a><a href="{% url 'cookie_policy' %}">Cookie Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/service.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveGoo - Your Journey, Our Responsibility</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{% url 'home' %}" class="nav-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                </a>
+                <ul class="nav-links" id="nav-menu">
+                    <li class="nav-link"><a href="{% url 'home' %}" class="active">Home</a></li>
+                    <li class="nav-link"><a href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-link"><a href="{% url 'about' %}">About</a></li>
+                    <li class="nav-link"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <div class="hamburger-menu" id="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+        {% if messages %}
+            <div class="container" style="padding-top: 20px;">
+                {% for message in messages %}
+                    <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center; font-weight: 500;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Your Journey, Our Responsibility</h1>
+                    <p>We provide comprehensive transport and travel solutions for all your needs. From logistics to car rentals, drivers, and ticket bookings.</p>
+                    <div class="hero-buttons">
+                        <a href="{% url 'services' %}" class="btn btn-secondary">Explore Services</a>
+                        <a href="{% url 'contact' %}" class="btn btn-outline">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="wave-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <div class="booking-widget-container container">
+            <div class="booking-widget">
+                <div class="widget-tabs">
+                    <button class="tab-btn active" data-tab="car-rentals"><i class="fa-solid fa-car"></i> Car Rentals</button>
+                    <button class="tab-btn" data-tab="hire-driver"><i class="fa-solid fa-user-tie"></i> Hire Driver</button>
+                    <button class="tab-btn" data-tab="logistics"><i class="fa-solid fa-truck-fast"></i> Logistics</button>
+                    <button class="tab-btn" data-tab="tickets"><i class="fa-solid fa-ticket"></i> Tickets</button>
+                </div>
+                <div id="car-rentals" class="tab-content active">
+                    <form class="booking-form" method="POST" action="{% url 'car_rental' %}">
+                        {% csrf_token %}
+                        <div class="form-group"><label for="pickup-loc">Pickup Location</label><input type="text" name="pickup-location" id="pickup-loc" placeholder="Enter location"></div>
+                        <div class="form-group"><label for="pickup-date">Pickup Date</label><input type="date" name="pickup-date" id="pickup-date"></div>
+                        <div class="form-group"><label for="return-date">Return Date</label><input type="date" name="return-date" id="return-date"></div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+                <div id="hire-driver" class="tab-content">
+                    <form class="booking-form" method="POST" action="{% url 'driver_service' %}">
+                        {% csrf_token %}
+                        <div class="form-group"><label>Service Area</label><input type="text" name="service-location" placeholder="Enter city or zip code"></div>
+                        <div class="form-group"><label>Service Date</label><input type="date" name="service-date"></div>
+                        <div class="form-group"><label>Duration (hours)</label><input type="number" name="duration" placeholder="e.g., 8"></div>
+                        <button type="submit" class="btn btn-primary">Find Driver</button>
+                    </form>
+                </div>
+                <div id="logistics" class="tab-content">
+                    <form class="booking-form" method="POST" action="{% url 'logistic' %}">
+                        {% csrf_token %}
+                        <div class="form-group"><label>Origin</label><input type="text" name="origin" placeholder="Enter origin"></div>
+                        <div class="form-group"><label>Destination</label><input type="text" name="destination" placeholder="Enter destination"></div>
+                        <div class="form-group"><label>Shipment Date</label><input type="date" name="shipment-date"></div>
+                        <button type="submit" class="btn btn-primary">Get Quote</button>
+                    </form>
+                </div>
+                <div id="tickets" class="tab-content">
+                    <div class="ticket-type-selector">
+                        <input type="radio" id="flight" name="ticket_type" value="flight" checked>
+                        <label for="flight"><i class="fa-solid fa-plane-up"></i> Flight</label>
+                        <input type="radio" id="bus" name="ticket_type" value="bus">
+                        <label for="bus"><i class="fa-solid fa-bus"></i> Bus</label>
+                        <input type="radio" id="train" name="ticket_type" value="train">
+                        <label for="train"><i class="fa-solid fa-train"></i> Train</label>
+                    </div>
+                    
+                    <form class="booking-form ticket-form" id="flight-form" method="POST" action="{% url 'flight_ticket' %}">
+                        {% csrf_token %}
+                        <div class="form-group"><label>From</label><input type="text" name="from" placeholder="City or airport"></div>
+                        <div class="form-group"><label>To</label><input type="text" name="to" placeholder="City or airport"></div>
+                        <div class="form-group"><label>Departure Date</label><input type="date" name="departure-date"></div>
+                        <button type="submit" class="btn btn-primary">Find Flights</button>
+                    </form>
+
+                    <form class="booking-form ticket-form" id="bus-form" method="POST" action="{% url 'bus_ticket' %}" style="display: none;">
+                        {% csrf_token %}
+                        <div class="form-group"><label>From</label><input type="text" name="from-city" placeholder="Origin City"></div>
+                        <div class="form-group"><label>To</label><input type="text" name="to-city" placeholder="Destination City"></div>
+                        <div class="form-group"><label>Travel Date</label><input type="date" name="travel-date"></div>
+                        <button type="submit" class="btn btn-primary">Find Buses</button>
+                    </form>
+
+                    <form class="booking-form ticket-form" id="train-form" method="POST" action="{% url 'train_ticket' %}" style="display: none;">
+                        {% csrf_token %}
+                        <div class="form-group"><label>From</label><input type="text" name="from-station" placeholder="Origin Station"></div>
+                        <div class="form-group"><label>To</label><input type="text" name="to-station" placeholder="Destination Station"></div>
+                        <div class="form-group"><label>Travel Date</label><input type="date" name="travel-date"></div>
+                        <button type="submit" class="btn btn-primary">Find Trains</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <section class="home-services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Services</h2>
+                    <p>We offer a comprehensive range of transport and travel services to meet all your needs.</p>
+                </div>
+                <div class="home-services-grid">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Car Rentals">
+                        <div class="service-card-content"><h3>Car Rentals</h3><p>Rent a car for your personal or business needs. We offer a wide range of vehicles from economy to luxury.</p></div>
+                        <div class="service-card-footer"><span class="price">From $35/day</span><a href="{% url 'car_rental' %}" class="btn btn-primary">Rent Now</a></div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://sl.bing.net/jlZPUMOo39o" alt="Driver Services">
+                        <div class="service-card-content"><h3>Driver Services</h3><p>Hire a professional driver for your own vehicle or get a driver with our rental cars.</p></div>
+                        <div class="service-card-footer"><span class="price">From $20/hour</span><a href="{% url 'driver_service' %}" class="btn btn-primary">Hire Driver</a></div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1577999639941-11ee7455a147?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Logistics Transport">
+                        <div class="service-card-content"><h3>Logistics Transport</h3><p>Complete logistics solutions for your goods transportation and delivery needs.</p></div>
+                        <div class="service-card-footer"><span class="price">Custom Quotes</span><a href="{% url 'logistic' %}" class="btn btn-primary">Get Quote</a></div>
+                    </div>
+                </div>
+                <div class="view-all-btn-container"><a href="{% url 'services' %}" class="btn btn-primary">View All Services <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="container">
+                <div class="section-header"><h2>How It Works</h2><p>Simple steps to get started with our services</p></div>
+                <div class="how-it-works-grid">
+                    <div class="step"><div class="step-icon"><i class="fa-solid fa-magnifying-glass"></i></div><h3>Choose a Service</h3><p>Select from our wide range of transport and travel services based on your needs.</p></div>
+                    <div class="step"><div class="step-icon"><i class="fa-solid fa-calendar-check"></i></div><h3>Book Online</h3><p>Complete your booking through our easy-to-use online platform with secure payment.</p></div>
+                    <div class="step"><div class="step-icon"><i class="fa-solid fa-road-spikes"></i></div><h3>Enjoy Your Journey</h3><p>Sit back and relax as we take care of all your transport and travel needs.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-us-extra">
+            <div class="container">
+                <div class="section-header"><h2>Why Choose Us</h2><p>We are dedicated to providing the best experience</p></div>
+                <div class="why-us-extra-grid">
+                    <div class="why-us-extra-item"><i class="fa-solid fa-headset"></i><h3>24/7 Support</h3><p>Our team is available around the clock to assist you with any inquiries or issues.</p></div>
+                    <div class="why-us-extra-item"><i class="fa-solid fa-car-side"></i><h3>Modern Fleet</h3><p>We offer a wide range of modern, well-maintained vehicles for your comfort and safety.</p></div>
+                    <div class="why-us-extra-item"><i class="fa-solid fa-hand-pointer"></i><h3>Easy Booking</h3><p>Book your service in just a few clicks with our simple and intuitive online platform.</p></div>
+                    <div class="why-us-extra-item"><i class="fa-solid fa-tags"></i><h3>Transparent Pricing</h3><p>No hidden fees. We believe in clear and upfront pricing for all our services.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header"><h2>What Our Customers Say</h2><p>Hear from our satisfied customers who trust MoveGoo</p></div>
+                <div class="testimonial-container">
+                    <button class="scroll-btn left" id="scroll-left"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="testimonials-grid" id="testimonials-grid">
+                        {% if testimonials %}
+                            {% for testimonial in testimonials %}
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <img src="{{ testimonial.image_url }}" alt="{{ testimonial.author }}">
+                                    <div class="testimonial-author">
+                                        <h4>{{ testimonial.author }}</h4>
+                                        <div class="testimonial-rating">
+                                            {% for i in ''|center:testimonial.rating %}
+                                            <i class="fa-solid fa-star"></i>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>"{{ testimonial.quote }}"</p>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>No testimonials to display at the moment.</p>
+                        {% endif %}
+                    </div>
+                    <button class="scroll-btn right" id="scroll-right"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Simplify Your Travel & Transport Needs?</h2>
+                <p>Join thousands of satisfied customers who trust MoveGoo for all their transport and travel requirements.</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'services' %}" class="btn btn-secondary">Explore Services</a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>
+                        <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                    </h4>
+                    <p>Your comprehensive transport and travel solutions provider. We make your journey seamless and reliable.</p>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="{% url 'home' %}">Home</a></li><li><a href="{% url 'services' %}">Services</a></li><li><a href="{% url 'about' %}">About Us</a></li><li><a href="{% url 'contact' %}">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Our Services</h4><ul><li><a href="{% url 'car_rental' %}">Car Rentals</a></li><li><a href="{% url 'driver_service' %}">Driver Services</a></li><li><a href="{% url 'logistic' %}">Logistics Transport</a></li></ul></div>
+                <div class="footer-col"><h4>Contact Us</h4><ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Shop No-17, Lingaraj Vihar Market Complex, Lingaraj Vihar, Pokhariput, Bhubaneswar, Odisha 751020</li>
+                    <li><a href="mailto:info@movegoo.com"><i class="fa-solid fa-envelope"></i> info@movegoo.com</a></li>
+                    <li class="working-hours"><i class="fa-solid fa-clock"></i> <strong>Everyday</strong><span>1st Shift: 9:30 AM - 2:00 PM</span><span>2nd Shift: 5:30 PM - 9:30 PM</span></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MoveGoo. All rights reserved.</p>
+                <div class="footer-links"><a href="{% url 'privacy_policy' %}">Privacy Policy</a><a href="{% url 'terms_of_services' %}">Terms of Service</a><a href="{% url 'cookie_policy' %}">Cookie Policy</a></div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>

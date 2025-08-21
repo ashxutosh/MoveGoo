@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MoveGoo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{% url 'home' %}" class="nav-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                </a>
+                <ul class="nav-links" id="nav-menu">
+                    <li class="nav-link"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-link"><a href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-link"><a href="{% url 'about' %}">About</a></li>
+                    <li class="nav-link"><a href="{% url 'contact' %}" class="active">Contact</a></li>
+                </ul>
+                <div class="hamburger-menu" id="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title-section">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>Have questions or need assistance? Get in touch with our team.</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                 {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center; font-weight: 500;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="contact-layout">
+                    <div class="contact-form-container">
+                        <h2>Send Us a Message</h2>
+                        <form method="POST" action="{% url 'contact' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="{{ form.name.id_for_label }}">Name</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}">Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.subject.id_for_label }}">Subject</label>
+                                {{ form.subject }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.message.id_for_label }}">Message</label>
+                                {{ form.message }}
+                            </div>
+                            <button type="submit" class="btn-submit">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info-container">
+                        <h2>Contact Information</h2>
+                        {% if company_info %}
+                        <div class="info-card">
+                            <div class="info-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <div class="info-item-text">
+                                    <h4>Address</h4>
+                                    <p>{{ company_info.address }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-item">
+                                <i class="fa-solid fa-phone"></i>
+                                <div class="info-item-text">
+                                    <h4>Phone</h4>
+                                    <p><a href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <div class="info-item-text">
+                                    <h4>Email</h4>
+                                    <p><a href="mailto:{{ company_info.email }}">{{ company_info.email }}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Business Hours</h2>
+                         <div class="info-card">
+                            <ul class="business-hours-list">
+                                <li>
+                                    <span><strong>Everyday</strong></span>
+                                </li>
+                                <li>
+                                    <span>1st Shift: {{ company_info.shift_1_hours }}</span>
+                                </li>
+                                 <li>
+                                    <span>2nd Shift: {{ company_info.shift_2_hours }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                        <div class="map-container">
+                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743.196969196699!2d85.80661341488464!3d20.2295868864205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a8f55e3bab7b%3A0x4d01a5c697c1164b!2sLingaraj%20Vihar%20Market%20Complex!5e0!3m2!1sen!2sin!4v1692361291882!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>
+                        <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                    </h4>
+                    <p>Your comprehensive transport and travel solutions provider.</p>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="{% url 'home' %}">Home</a></li><li><a href="{% url 'services' %}">Services</a></li><li><a href="{% url 'about' %}">About Us</a></li><li><a href="{% url 'contact' %}">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Our Services</h4><ul><li><a href="{% url 'car_rental' %}">Car Rentals</a></li><li><a href="{% url 'driver_service' %}">Driver Services</a></li><li><a href="{% url 'logistic' %}">Logistics</a></li></ul></div>
+                <div class="footer-col"><h4>Contact Us</h4><ul><li><i class="fa-solid fa-location-dot"></i> Shop No-17, Lingaraj Vihar Market Complex, Lingaraj Vihar, Pokhariput, Bhubaneswar, Odisha 751020</li><li class="working-hours"><i class="fa-solid fa-clock"></i> <strong>Everyday</strong><span>1st Shift: 9:30 AM - 2:00 PM</span><span>2nd Shift: 5:30 PM - 9:30 PM</span></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MoveGoo. All rights reserved.</p>
+                <div class="footer-links"><a href="{% url 'privacy_policy' %}">Privacy Policy</a><a href="{% url 'terms_of_services' %}">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/contact.js' %}"></script>
+</body>
+</html>

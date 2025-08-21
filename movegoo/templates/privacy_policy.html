@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - MoveGoo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/privacy_policy.css' %}">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{% url 'home' %}" class="nav-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                </a>
+                <ul class="nav-links" id="nav-menu">
+                    <li class="nav-link"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-link"><a href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-link"><a href="{% url 'about' %}">About</a></li>
+                    <li class="nav-link"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <div class="hamburger-menu" id="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title-section">
+            <div class="container">
+                <h1>Privacy Policy</h1>
+                <p>Your privacy is important to us.</p>
+            </div>
+        </section>
+
+        <section class="privacy-content-section">
+            <div class="container">
+                <div class="privacy-content">
+                    <p><strong>Last Updated:</strong> August 21, 2025</p>
+
+                    <h2>1. Introduction</h2>
+                    <p>Welcome to MoveGoo. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, or our practices with regards to your personal information, please contact us at info@movegoo.com.</p>
+
+                    <h2>2. Information We Collect</h2>
+                    <p>We collect personal information that you voluntarily provide to us when you register on the website, express an interest in obtaining information about us or our products and services, when you participate in activities on the website or otherwise when you contact us.</p>
+                    <p>The personal information that we collect depends on the context of your interactions with us and the website, the choices you make and the products and features you use. The personal information we collect may include the following: name, phone number, email address, mailing address, and payment information.</p>
+
+                    <h2>3. How We Use Your Information</h2>
+                    <p>We use personal information collected via our website for a variety of business purposes described below. We process your personal information for these purposes in reliance on our legitimate business interests, in order to enter into or perform a contract with you, with your consent, and/or for compliance with our legal obligations.</p>
+                     <ul>
+                        <li>To facilitate account creation and logon process.</li>
+                        <li>To post testimonials with your consent.</li>
+                        <li>Request feedback and to contact you about your use of our website.</li>
+                        <li>To enable user-to-user communications with each user's consent.</li>
+                        <li>To manage user accounts and keep them in working order.</li>
+                    </ul>
+
+                    <h2>4. Will Your Information Be Shared With Anyone?</h2>
+                    <p>We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations. We may process or share your data that we hold based on the following legal basis: Consent, Legitimate Interests, Performance of a Contract, Legal Obligations.</p>
+
+                    <h2>5. How We Keep Your Information Safe</h2>
+                    <p>We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security, and improperly collect, access, steal, or modify your information.</p>
+
+                    <h2>6. Do We Make Updates to This Notice?</h2>
+                    <p>We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.</p>
+
+                    <h2>7. How Can You Contact Us About This Policy?</h2>
+                    <p>If you have questions or comments about this policy, you may email us at info@movegoo.com or by post to:</p>
+                    <p>MoveGoo<br>
+                    Shop No-17, Lingaraj Vihar Market Complex<br>
+                    Lingaraj Vihar, Pokhariput<br>
+                    Bhubaneswar, Odisha 751020</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>
+                        <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                    </h4>
+                    <p>Your comprehensive transport and travel solutions provider.</p>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="{% url 'home' %}">Home</a></li><li><a href="{% url 'services' %}">Services</a></li><li><a href="{% url 'about' %}">About Us</a></li><li><a href="{% url 'contact' %}">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Our Services</h4><ul><li><a href="{% url 'car_rental' %}">Car Rentals</a></li><li><a href="{% url 'driver_service' %}">Driver Services</a></li><li><a href="{% url 'logistic' %}">Logistics</a></li></ul></div>
+                <div class="footer-col"><h4>Contact Us</h4><ul><li><i class="fa-solid fa-location-dot"></i> Shop No-17, Lingaraj Vihar Market Complex, Lingaraj Vihar, Pokhariput, Bhubaneswar, Odisha 751020</li><li class="working-hours"><i class="fa-solid fa-clock"></i> <strong>Everyday</strong><span>1st Shift: 9:30 AM - 2:00 PM</span><span>2nd Shift: 5:30 PM - 9:30 PM</span></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MoveGoo. All rights reserved.</p>
+                <div class="footer-links"><a href="{% url 'privacy_policy' %}">Privacy Policy</a><a href="{% url 'terms_of_services' %}">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/privacy_policy.js' %}"></script>
+</body>
+</html>

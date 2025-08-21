@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Service - MoveGoo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/car_rental.css' %}">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{% url 'home' %}" class="nav-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                </a>
+                <ul class="nav-links" id="nav-menu">
+                    <li class="nav-link"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-link"><a href="{% url 'services' %}" class="active">Services</a></li>
+                    <li class="nav-link"><a href="{% url 'about' %}">About</a></li>
+                    <li class="nav-link"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <div class="hamburger-menu" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="service-detail-page">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center; font-weight: 500;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="service-detail-layout">
+                    <div class="service-content">
+                        <h1>Car Rental Service</h1>
+                        <p class="intro-text">Freedom to explore at your own pace. Choose from our diverse fleet of well-maintained vehicles for your personal or business travel needs.</p>
+                        <img src="https://images.unsplash.com/photo-1590362891992-f77d9f06d028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="A fleet of modern rental cars" style="width:100%; border-radius: 12px; margin-bottom: 2rem;">
+                        <h2>About Our Car Rental Service</h2>
+                        <p>At MoveGoo, we make renting a car a simple, hassle-free experience. Whether you need a compact car for city driving, a spacious SUV for a family vacation, or a luxury vehicle for a special occasion, we have the perfect ride for you. Our entire fleet is regularly serviced and maintained to the highest standards to ensure your safety and comfort on the road.</p>
+                        <p>We offer flexible rental periods, from a single day to long-term leases, with competitive pricing and no hidden fees. Our goal is to provide you with the convenience and reliability you need to make your journey a success.</p>
+                        <h2>Key Features</h2>
+                        <div class="features-grid">
+                            <div class="feature-item"><i class="fa-solid fa-car-side"></i><span>Wide Range of Vehicles</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-tags"></i><span>Transparent Pricing</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-calendar-check"></i><span>Easy Online Booking</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-shield-halved"></i><span>24/7 Roadside Assistance</span></div>
+                        </div>
+                    </div>
+                    <aside class="booking-card">
+                        <h3>Book Your Car</h3>
+                        <form method="POST" action="{% url 'car_rental' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="pickup-location">Pickup Location</label>
+                                <input type="text" id="pickup-location" name="pickup-location" placeholder="City, Airport, or Address" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="pickup-date">Pickup Date</label>
+                                <input type="date" id="pickup-date" name="pickup-date" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="return-date">Return Date</label>
+                                <input type="date" id="return-date" name="return-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="car-type">Vehicle Type</label>
+                                <select id="car-type" name="car-type">
+                                    <option>Economy</option>
+                                    <option>Compact</option>
+                                    <option>SUV</option>
+                                    <option>Luxury</option>
+                                    <option>Van</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search Availability</button>
+                        </form>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120"></h4>
+                    <p>Your comprehensive transport and travel solutions provider.</p>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="{% url 'home' %}">Home</a></li><li><a href="{% url 'services' %}">Services</a></li><li><a href="{% url 'about' %}">About Us</a></li><li><a href="{% url 'contact' %}">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Our Services</h4><ul><li><a href="{% url 'car_rental' %}">Car Rentals</a></li><li><a href="{% url 'driver_service' %}">Driver Services</a></li><li><a href="{% url 'logistic' %}">Logistics</a></li></ul></div>
+                <div class="footer-col"><h4>Contact Us</h4><ul><li><i class="fa-solid fa-location-dot"></i> Shop No-17, Lingaraj Vihar Market Complex, Lingaraj Vihar, Pokhariput, Bhubaneswar, Odisha 751020</li><li class="working-hours"><i class="fa-solid fa-clock"></i> <strong>Everyday</strong><span>1st Shift: 9:30 AM - 2:00 PM</span><span>2nd Shift: 5:30 PM - 9:30 PM</span></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MoveGoo. All rights reserved.</p>
+                <div class="footer-links"><a href="{% url 'privacy_policy' %}">Privacy Policy</a><a href="{% url 'terms_of_services' %}">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/car_rental.js' %}"></script>
+</body>
+</html>

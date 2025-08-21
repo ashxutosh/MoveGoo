@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Tickets - MoveGoo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/train_ticket.css' %}">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{% url 'home' %}" class="nav-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                </a>
+                <ul class="nav-links" id="nav-menu">
+                    <li class="nav-link"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-link"><a href="{% url 'services' %}" class="active">Services</a></li>
+                    <li class="nav-link"><a href="{% url 'about' %}">About</a></li>
+                    <li class="nav-link"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <div class="hamburger-menu" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="service-detail-page">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center; font-weight: 500;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="service-detail-layout">
+                    <div class="service-content">
+                        <h1>Train Ticket Booking</h1>
+                        <p class="intro-text">Explore the country by rail. Search, book, and manage your train tickets with ease and convenience.</p>
+                        <img src="https://images.unsplash.com/photo-1590001155613-5594582f343a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="A train moving through a scenic landscape" style="width:100%; border-radius: 12px; margin-bottom: 2rem;">
+                        <h2>Scenic Journeys by Rail</h2>
+                        <p>Experience the charm of train travel with our easy-to-use booking platform. We connect you with an extensive network of railway operators, offering a wide range of routes and classes to fit every budget and preference. From high-speed intercity express trains to scenic regional routes, find the perfect journey for your next adventure.</p>
+                        <p>Our system provides real-time availability, fare comparisons, and instant e-ticketing. Plan your trip, select your seats, and receive your tickets directly on your device. Travel by train is not just about the destination, but the journey itself.</p>
+                        <h2>Key Features</h2>
+                        <div class="features-grid">
+                            <div class="feature-item"><i class="fa-solid fa-network-wired"></i><span>Extensive Rail Network</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-chair"></i><span>Multiple Class Options</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-bell"></i><span>Real-Time PNR Status</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-wallet"></i><span>Easy Cancellations & Refunds</span></div>
+                        </div>
+                    </div>
+                    <aside class="booking-card">
+                        <h3>Find Your Train</h3>
+                        <form method="POST" action="{% url 'train_ticket' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="from-station">From</label>
+                                <input type="text" id="from-station" name="from-station" placeholder="Origin Station" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="to-station">To</label>
+                                <input type="text" id="to-station" name="to-station" placeholder="Destination Station" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="travel-date">Date of Travel</label>
+                                <input type="date" id="travel-date" name="travel-date" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search Trains</button>
+                        </form>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120"></h4>
+                    <p>Your comprehensive transport and travel solutions provider.</p>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="{% url 'home' %}">Home</a></li><li><a href="{% url 'services' %}">Services</a></li><li><a href="{% url 'about' %}">About Us</a></li><li><a href="{% url 'contact' %}">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Our Services</h4><ul><li><a href="{% url 'car_rental' %}">Car Rentals</a></li><li><a href="{% url 'driver_service' %}">Driver Services</a></li><li><a href="{% url 'logistic' %}">Logistics</a></li></ul></div>
+                <div class="footer-col"><h4>Contact Us</h4><ul><li><i class="fa-solid fa-location-dot"></i> Shop No-17, Lingaraj Vihar Market Complex, Lingaraj Vihar, Pokhariput, Bhubaneswar, Odisha 751020</li><li class="working-hours"><i class="fa-solid fa-clock"></i> <strong>Everyday</strong><span>1st Shift: 9:30 AM - 2:00 PM</span><span>2nd Shift: 5:30 PM - 9:30 PM</span></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MoveGoo. All rights reserved.</p>
+                <div class="footer-links"><a href="{% url 'privacy_policy' %}">Privacy Policy</a><a href="{% url 'terms_of_services' %}">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/train_ticket.js' %}"></script>
+</body>
+</html>

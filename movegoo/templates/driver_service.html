@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Services - MoveGoo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/driver_service.css' %}">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{% url 'home' %}" class="nav-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120">
+                </a>
+                <ul class="nav-links" id="nav-menu">
+                    <li class="nav-link"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-link"><a href="{% url 'services' %}" class="active">Services</a></li>
+                    <li class="nav-link"><a href="{% url 'about' %}">About</a></li>
+                    <li class="nav-link"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <div class="hamburger-menu" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="service-detail-page">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center; font-weight: 500;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="service-detail-layout">
+                    <div class="service-content">
+                        <h1>Professional Driver Services</h1>
+                        <p class="intro-text">Sit back, relax, and enjoy the ride. Hire a professional, vetted driver for your own car or one of our rental vehicles.</p>
+                        <img src="https://images.unsplash.com/photo-1614283997781-6a39553def37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Professional driver in a luxury car" style="width:100%; border-radius: 12px; margin-bottom: 2rem;">
+                        <h2>Your Personal Chauffeur</h2>
+                        <p>Whether you need a driver for a business trip, a special event, an airport transfer, or simply to navigate the city stress-free, our professional driver service is the perfect solution. You can hire a driver for your own vehicle or book one along with our premium rental cars. All our drivers are experienced, licensed, and undergo rigorous background checks to ensure your safety and peace of mind.</p>
+                        <p>Our service is flexible, offering hourly, daily, and weekly rates to suit your specific needs. Experience the ultimate convenience and professionalism with a personal driver from MoveGoo.</p>
+                        <h2>Key Features</h2>
+                        <div class="features-grid">
+                            <div class="feature-item"><i class="fa-solid fa-user-shield"></i><span>Vetted & Professional Drivers</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-clock"></i><span>Flexible Hourly & Daily Rates</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-map-location-dot"></i><span>Airport & City Transfers</span></div>
+                            <div class="feature-item"><i class="fa-solid fa-briefcase"></i><span>Corporate & Event Services</span></div>
+                        </div>
+                    </div>
+                    <aside class="booking-card">
+                        <h3>Hire a Driver</h3>
+                        <form method="POST" action="{% url 'driver_service' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="service-location">Service Location</label>
+                                <input type="text" id="service-location" name="service-location" placeholder="City or Address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service-date">Service Date</label>
+                                <input type="date" id="service-date" name="service-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="start-time">Start Time</label>
+                                <input type="time" id="start-time" name="start-time" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="duration">Duration (in hours)</label>
+                                <input type="number" id="duration" name="duration" placeholder="e.g., 4" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Request a Driver</button>
+                        </form>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><img src="{% static 'images/logo.png' %}" alt="MoveGoo Logo" width="120"></h4>
+                    <p>Your comprehensive transport and travel solutions provider.</p>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="{% url 'home' %}">Home</a></li><li><a href="{% url 'services' %}">Services</a></li><li><a href="{% url 'about' %}">About Us</a></li><li><a href="{% url 'contact' %}">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Our Services</h4><ul><li><a href="{% url 'car_rental' %}">Car Rentals</a></li><li><a href="{% url 'driver_service' %}">Driver Services</a></li><li><a href="{% url 'logistic' %}">Logistics</a></li></ul></div>
+                <div class="footer-col"><h4>Contact Us</h4><ul><li><i class="fa-solid fa-location-dot"></i> Shop No-17, Lingaraj Vihar Market Complex, Lingaraj Vihar, Pokhariput, Bhubaneswar, Odisha 751020</li><li class="working-hours"><i class="fa-solid fa-clock"></i> <strong>Everyday</strong><span>1st Shift: 9:30 AM - 2:00 PM</span><span>2nd Shift: 5:30 PM - 9:30 PM</span></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MoveGoo. All rights reserved.</p>
+                <div class="footer-links"><a href="{% url 'privacy_policy' %}">Privacy Policy</a><a href="{% url 'terms_of_services' %}">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/driver_service.js' %}"></script>
+</body>
+</html>
