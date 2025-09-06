@@ -57,6 +57,7 @@ def car_rental(request):
             'pickup_location': request.POST.get('pickup-location'),
             'pickup_date': request.POST.get('pickup-date'),
             'return_date': request.POST.get('return-date'),
+            'phone-number': request.POST.get('phone-number'),
         }
         Booking.objects.create(service_type='Car Rental', details=details)
         messages.success(request, 'Thank you for your request! Our team will contact you in 1-2 hours.')
@@ -70,6 +71,7 @@ def driver_service(request):
             'service_location': request.POST.get('service-location'),
             'service_date': request.POST.get('service-date'),
             'duration': request.POST.get('duration'),
+            'phone-number': request.POST.get('phone-number'),
         }
         Booking.objects.create(service_type='Driver Service', details=details)
         messages.success(request, 'Thank you for your request! Our team will contact you in 1-2 hours.')
@@ -83,6 +85,7 @@ def logistic(request):
             'origin': request.POST.get('origin'),
             'destination': request.POST.get('destination'),
             'shipment_date': request.POST.get('shipment-date'),
+            'phone-number': request.POST.get('phone-number'),
         }
         Booking.objects.create(service_type='Logistics', details=details)
         messages.success(request, 'Thank you for your request! Our team will contact you in 1-2 hours.')
@@ -96,6 +99,7 @@ def flight_ticket(request):
             'from': request.POST.get('from'),
             'to': request.POST.get('to'),
             'departure_date': request.POST.get('departure-date'),
+            'phone-number': request.POST.get('phone-number'),
         }
         Booking.objects.create(service_type='Flight Ticket', details=details)
         messages.success(request, 'Thank you for your request! Our team will contact you in 1-2 hours.')
@@ -109,6 +113,7 @@ def bus_ticket(request):
             'from_city': request.POST.get('from-city'),
             'to_city': request.POST.get('to-city'),
             'travel_date': request.POST.get('travel-date'),
+            'phone-number': request.POST.get('phone-number'),
         }
         Booking.objects.create(service_type='Bus Ticket', details=details)
         messages.success(request, 'Thank you for your request! Our team will contact you in 1-2 hours.')
@@ -122,6 +127,7 @@ def train_ticket(request):
             'from_station': request.POST.get('from-station'),
             'to_station': request.POST.get('to-station'),
             'travel_date': request.POST.get('travel-date'),
+            'phone-number': request.POST.get('phone-number'),
         }
         Booking.objects.create(service_type='Train Ticket', details=details)
         messages.success(request, 'Thank you for your request! Our team will contact you in 1-2 hours.')

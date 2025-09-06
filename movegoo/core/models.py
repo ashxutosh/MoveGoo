@@ -28,6 +28,7 @@ class Booking(models.Model):
         auto_now_add=True,
         help_text="The date and time when the booking was submitted."
     )
+    
 
     def __str__(self):
         return f"{self.service_type} booking on {self.booking_date.strftime('%Y-%m-%d')}"
@@ -87,7 +88,7 @@ class CompanyInfo(models.Model):
     It's intended to have only one entry.
     """
     address = models.CharField(max_length=255)
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=70)
     email = models.EmailField()
     shift_1_hours = models.CharField(max_length=50)
     shift_2_hours = models.CharField(max_length=50)
@@ -113,6 +114,7 @@ class Vehicle(models.Model):
     vehicle_type = models.CharField(max_length=100, choices=VEHICLE_TYPES)
     make_model = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
+    contact = models.CharField(max_length=15)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -127,6 +129,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     subject = models.CharField(max_length=200)
+    number = models.CharField(max_length=15)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):

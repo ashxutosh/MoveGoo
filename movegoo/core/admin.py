@@ -5,12 +5,12 @@ from django.utils.safestring import mark_safe
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'name', 'email', 'created_at')
+    list_display = ('subject', 'name', 'email', 'created_at', 'number')
     search_fields = ('subject', 'name', 'email')
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('service_type', 'booking_date', 'formatted_details')
+    list_display = ('service_type', 'booking_date', 'formatted_details','phone-number')
     list_filter = ('service_type',)
     search_fields = ('service_type',)
 
@@ -37,6 +37,6 @@ class CompanyInfoAdmin(admin.ModelAdmin):
 
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
-    list_display = ('make_model', 'owner_name', 'vehicle_type', 'city')
+    list_display = ('make_model', 'owner_name', 'vehicle_type', 'city', 'contact')
     list_filter = ('vehicle_type', 'city')
     search_fields = ('make_model', 'owner_name')
