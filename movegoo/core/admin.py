@@ -5,8 +5,8 @@ from django.utils.safestring import mark_safe
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'name', 'email', 'created_at')
-    search_fields = ('subject', 'name', 'email')
+    list_display = ('subject', 'name', 'email','number' , 'created_at')
+    search_fields = ('subject', 'name', 'email' , 'number')
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):

@@ -9,6 +9,7 @@ class ContactForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'placeholder': 'Your name', 'required': True}),
             'email': forms.EmailInput(attrs={'placeholder': 'Your email', 'required': True}),
             'subject': forms.TextInput(attrs={'placeholder': 'Subject', 'required': True}),
+            'number': forms.TextInput(attrs={'placeholder': 'Your phone number', 'required': True}),
             'message': forms.Textarea(attrs={'placeholder': 'Your message', 'rows': 6, 'required': True}),
         }
 
