@@ -87,7 +87,7 @@ class CompanyInfo(models.Model):
     It's intended to have only one entry.
     """
     address = models.CharField(max_length=255)
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=60)
     email = models.EmailField()
     shift_1_hours = models.CharField(max_length=50)
     shift_2_hours = models.CharField(max_length=50)
