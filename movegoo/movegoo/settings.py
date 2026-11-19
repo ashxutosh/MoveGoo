@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.movegoo.com', 'movegoo.com','31.97.237.64']
+ALLOWED_HOSTS = ['www.movegoo.com', 'movegoo.com','31.97.237.64', "move-goo.vercel.app"]
 
 
 # Application definition
