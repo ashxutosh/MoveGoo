@@ -27,8 +27,13 @@ SECRET_KEY = 'django-insecure-r_h398v218ax%bh(zp++!_fmg*-!6_s_3qm(0-9hl-0ak-c(w_
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "move-r5gto86md-ashxutoshs-projects.vercel.app",
-]
+    host.strip()
+    for host in os.getenv(
+        "ALLOWED_HOSTS",
+        "move-goo.vercel.app,move-r5gto86md-ashxutoshs-projects.vercel.app",
+    ).split(",")
+    if host.strip()
+] + ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -79,15 +84,13 @@ WSGI_APPLICATION = 'movegoo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'movegoo_db',
-        'USER': 'movegoo_user',
-        'PASSWORD':'movegoo',
-        'HOST':'localhost',
-        'PORT':'5432',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.getenv('SQLITE_PATH', os.path.join('/tmp', 'movegoo.sqlite3')),
     }
 }
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 
 # Password validation
