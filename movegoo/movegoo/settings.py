@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.getenv(
         "ALLOWED_HOSTS",
-        "move-goo.vercel.app,move-r5gto86md-ashxutoshs-projects.vercel.app",
+        "move-goo.vercel.app",
     ).split(",")
     if host.strip()
 ] + ["127.0.0.1", "localhost"]
