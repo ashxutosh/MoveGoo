@@ -27,13 +27,7 @@ SECRET_KEY = 'django-insecure-r_h398v218ax%bh(zp++!_fmg*-!6_s_3qm(0-9hl-0ak-c(w_
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.getenv(
-        "ALLOWED_HOSTS",
-        "move-goo.vercel.app",
-    ).split(",")
-    if host.strip()
-] + ["127.0.0.1", "localhost"]
+        "move-goo.vercel.app",]
 
 
 # Application definition
