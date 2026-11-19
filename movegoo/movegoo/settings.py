@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-r_h398v218ax%bh(zp++!_fmg*-!6_s_3qm(0-9hl-0ak-c(w_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["move-goo.vercel.app"]
 
 
 # Application definition
